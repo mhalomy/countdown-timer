@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
 import Countdown from './components/Countdown';
-// import glamorous from 'glamorous';
+import glamorous from 'glamorous';
 
-// const Wrapper = glamorous.div({
-//   color: 'blue',
-//   display: 'flex'
-// });
+const MainWrapper = glamorous.div({
+  marginLeft: '10px',
+  marginTop: '10px'
+})
+
+const CountdownWrapper = glamorous.div({
+  display: 'flex',
+});
+
+const Start = glamorous.div({
+  fontSize: '0.75em',
+  fontWeight: 'bold'
+})
 
 class App extends Component {
   state = {
@@ -74,15 +83,15 @@ class App extends Component {
   render() {
     const remaining = this.state;
     return (
-      <div>
-        <p>STARTS IN</p>
-        <div>
-          <Countdown number={remaining.days} unit='Days' ></Countdown>
-          <Countdown number={remaining.hours} unit='Hours' ></Countdown>
-          <Countdown number={remaining.minutes} unit='Minutes' ></Countdown>
-          <Countdown number={remaining.seconds} unit='Seconds' ></Countdown>
-        </div>
-      </div>
+      <MainWrapper>
+        <Start>STARTS IN</Start>
+        <CountdownWrapper>
+          <Countdown number={remaining.days} unit='DAYS' ></Countdown>
+          <Countdown number={remaining.hours} unit='HOURS' ></Countdown>
+          <Countdown number={remaining.minutes} unit='MINUTES' ></Countdown>
+          <Countdown number={remaining.seconds} unit='SECONDS' ></Countdown>
+        </CountdownWrapper>
+      </MainWrapper>
     );
   }
 }

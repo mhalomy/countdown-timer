@@ -2,7 +2,8 @@ import React from 'react';
 import glamorous from 'glamorous';
 
 const Wrapper = glamorous.div({
-    color: 'blue'
+    fontSize: '.5em',
+    fontWeight: 'bold'
 });
 
 const Unit = (props) => {

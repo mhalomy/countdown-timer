@@ -2,7 +2,8 @@ import React from 'react';
 import glamorous from 'glamorous';
 
 const Wrapper = glamorous.div({
-    color: 'red'
+    fontSize: '2em',
+    fontWeight: 'bold'
 });
 
 const Number = (props) => {
