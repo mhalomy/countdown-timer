@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import Countdown from './components/countdown';
+import Countdown from './components/Countdown';
+// import glamorous from 'glamorous';
+
+// const Wrapper = glamorous.div({
+//   color: 'blue',
+//   display: 'flex'
+// });
 
 class App extends Component {
   state = {
@@ -66,13 +72,16 @@ class App extends Component {
   }
 
   render() {
+    const remaining = this.state;
     return (
       <div>
         <p>STARTS IN</p>
-        <Countdown>{this.state.days} Days</Countdown>
-        <Countdown>{this.state.hours} Hours</Countdown>
-        <Countdown>{this.state.minutes} Minutes</Countdown>
-        <Countdown>{this.state.seconds} Seconds</Countdown>
+        <div>
+          <Countdown number={remaining.days} unit='Days' ></Countdown>
+          <Countdown number={remaining.hours} unit='Hours' ></Countdown>
+          <Countdown number={remaining.minutes} unit='Minutes' ></Countdown>
+          <Countdown number={remaining.seconds} unit='Seconds' ></Countdown>
+        </div>
       </div>
     );
   }
