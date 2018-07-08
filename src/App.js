@@ -76,6 +76,14 @@ class App extends Component {
 
   }
 
+  addZero (number) {
+    if (number <= 9) {
+      return '0' + String(number);
+    } else {
+      return number;
+    }
+  }
+
   stopInterval() {
     clearInterval(this.interval);
   }
@@ -86,10 +94,10 @@ class App extends Component {
       <MainWrapper>
         <Start>STARTS IN</Start>
         <CountdownWrapper>
-          <Countdown number={remaining.days} unit='DAYS' ></Countdown>
-          <Countdown number={remaining.hours} unit='HOURS' ></Countdown>
-          <Countdown number={remaining.minutes} unit='MINUTES' ></Countdown>
-          <Countdown number={remaining.seconds} unit='SECONDS' ></Countdown>
+          <Countdown number={this.addZero(remaining.days)} unit='DAYS' ></Countdown>
+          <Countdown number={this.addZero(remaining.hours)} unit='HOURS' ></Countdown>
+          <Countdown number={this.addZero(remaining.minutes)} unit='MINUTES' ></Countdown>
+          <Countdown number={this.addZero(remaining.seconds)} unit='SECONDS' ></Countdown>
         </CountdownWrapper>
       </MainWrapper>
     );
