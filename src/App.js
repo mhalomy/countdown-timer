@@ -8,7 +8,7 @@ const MainWrapper = glamorous.div({
 })
 
 const CountdownWrapper = glamorous.div({
-  display: 'flex',
+  display: 'flex'
 });
 
 const Start = glamorous.div({
@@ -76,7 +76,7 @@ class App extends Component {
 
   }
 
-  addZero (number) {
+  addZero(number) {
     if (number <= 9) {
       return '0' + String(number);
     } else {
@@ -94,10 +94,10 @@ class App extends Component {
       <MainWrapper>
         <Start>STARTS IN</Start>
         <CountdownWrapper>
-          <Countdown number={this.addZero(remaining.days)} unit='DAYS' ></Countdown>
-          <Countdown number={this.addZero(remaining.hours)} unit='HOURS' ></Countdown>
-          <Countdown number={this.addZero(remaining.minutes)} unit='MINUTES' ></Countdown>
-          <Countdown number={this.addZero(remaining.seconds)} unit='SECONDS' ></Countdown>
+          <Countdown number={this.addZero(remaining.days)} unit={remaining.days === 1 ? 'DAY' : 'DAYS'} ></Countdown>
+          <Countdown number={this.addZero(remaining.hours)} unit={remaining.hours === 1 ? 'HOUR' : 'HOURS'} ></Countdown>
+          <Countdown number={this.addZero(remaining.minutes)} unit={remaining.minutes === 1 ? 'MINUTE' : 'MINUTES'} ></Countdown>
+          <Countdown number={this.addZero(remaining.seconds)} unit={remaining.seconds === 1 ? 'SECOND' : 'SECONDS'} ></Countdown>
         </CountdownWrapper>
       </MainWrapper>
     );
