@@ -1,6 +1,22 @@
 import React, { Component } from 'react';
 import Countdown from './components/Countdown';
 import glamorous from 'glamorous';
+import { IntlProvider, FormattedMessage, addLocaleData } from 'react-intl';
+import de from 'react-intl/locale-data/de';
+import en from 'react-intl/locale-data/en';
+// import localeData from './../../build/locales/data.json';
+
+addLocaleData(en);
+addLocaleData(de);
+
+const language = (navigator.languages && navigator.languages[0]) ||
+                    navigator.language ||
+                    navigator.userLanguage;
+
+const languageWithoutRegionCode = language.toLowerCase().split(/[_-]+/)[0];
+
+//build/locales folder doesn't exist
+// const messages = localeData[languageWithoutRegionCode] || localeData[language] || localeData.en;
 
 const MainWrapper = glamorous.div({
   marginLeft: '10px',
@@ -26,7 +42,7 @@ class App extends Component {
   };
 
   componentDidMount() {
-    const deadline = new Date('July 20, 2018 17:30');
+    const deadline = new Date('July 15, 2018 17:00');
     this.interval = setInterval(() => {
       const dateDiff = this.countdownUpdate(deadline);
       if (dateDiff) {
@@ -91,15 +107,23 @@ class App extends Component {
   render() {
     const remaining = this.state;
     return (
-      <MainWrapper>
-        <Start>STARTS IN</Start>
-        <CountdownWrapper>
-          <Countdown number={this.addZero(remaining.days)} unit={remaining.days === 1 ? 'DAY' : 'DAYS'} ></Countdown>
-          <Countdown number={this.addZero(remaining.hours)} unit={remaining.hours === 1 ? 'HOUR' : 'HOURS'} ></Countdown>
-          <Countdown number={this.addZero(remaining.minutes)} unit={remaining.minutes === 1 ? 'MINUTE' : 'MINUTES'} ></Countdown>
-          <Countdown number={this.addZero(remaining.seconds)} unit={remaining.seconds === 1 ? 'SECOND' : 'SECONDS'} ></Countdown>
-        </CountdownWrapper>
-      </MainWrapper>
+      <IntlProvider locale="en" messages={{
+        'App.startsIn': "STARTS IN"
+      }} >
+        <MainWrapper>
+          <Start>
+            <FormattedMessage
+              id="App.startsIn"
+              defaultMessage="BEGINNT IN" />
+          </Start>
+          <CountdownWrapper>
+            <Countdown number={this.addZero(remaining.days)} unit={remaining.days === 1 ? 'DAY' : 'DAYS'} ></Countdown>
+            <Countdown number={this.addZero(remaining.hours)} unit={remaining.hours === 1 ? 'HOUR' : 'HOURS'} ></Countdown>
+            <Countdown number={this.addZero(remaining.minutes)} unit={remaining.minutes === 1 ? 'MINUTE' : 'MINUTES'} ></Countdown>
+            <Countdown number={this.addZero(remaining.seconds)} unit={remaining.seconds === 1 ? 'SECOND' : 'SECONDS'} ></Countdown>
+          </CountdownWrapper>
+        </MainWrapper>
+      </IntlProvider>
     );
   }
 }
